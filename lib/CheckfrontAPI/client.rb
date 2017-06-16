@@ -1,22 +1,23 @@
+require 'dotenv'
 require 'net/http'
 require 'yaml'
+Dotenv.load
 
 module CheckfrontAPI
   class Client
-      
-    config = YAML.load_file(File.expand_path(File.dirname('__FILE__') + "/config.yml"))
-    API_ENDPOINT = config["config"]["api_endpoint"]
-    API_KEY = config["config"]["api_key"]
-    API_SECRET = config["config"]["api_secret"]
+
+    API_ENDPOINT = ENV["API_ENDPOINT"]
+    API_KEY = ENV["API_KEY"]
+    API_SECRET = ENV["API_SECRET"]
 
     def self.test_connection
       uri = URI(API_ENDPOINT)
       res = Net::HTTP.get_response(uri)
       res.body
     end
-    
+
     def self.initialize
-      
+
     end
   end
 end

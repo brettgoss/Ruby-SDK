@@ -13,4 +13,4 @@
 
 
 # secrets
-config.yml
+.env

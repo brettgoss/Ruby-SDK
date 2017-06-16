@@ -8,9 +8,9 @@ RSpec.describe CheckfrontAPI do
   it "can reach the server" do
     expect(CheckfrontAPI::Client::test_connection).not_to be nil
   end
-  
-  xit "can authenticate" do
-    
+
+  it "can reach /account with basic auth" do
+    expect(CheckfrontAPI::Client::basic_auth).to include "OK"
   end
-  
+
 end

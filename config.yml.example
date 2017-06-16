@@ -1,0 +1,7 @@
+config:
+    api_endpoint: https://your-company.checkfront.com/api/3.0/
+    api_key: your-api-key
+    api_secret: your-api-secret
+
+
+

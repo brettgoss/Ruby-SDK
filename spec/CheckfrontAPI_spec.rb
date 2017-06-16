@@ -5,7 +5,12 @@ RSpec.describe CheckfrontAPI do
     expect(CheckfrontAPI::VERSION).not_to be nil
   end
 
-  it "does something useful" do
-    expect(false).to eq(true)
+  it "can reach the server" do
+    expect(CheckfrontAPI::Client::test_connection).not_to be nil
   end
+  
+  xit "can authenticate" do
+    
+  end
+  
 end

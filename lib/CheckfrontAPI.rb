@@ -1,5 +1,5 @@
-require "CheckfrontAPI/version"
+require_relative "CheckfrontAPI/version"
+require_relative "CheckfrontAPI/client"
 
 module CheckfrontAPI
-  # Your code goes here...
 end

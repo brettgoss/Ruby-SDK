@@ -4,14 +4,14 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'CheckfrontAPI/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "CheckfrontAPI"
+  spec.name          = "checkfront-api"
   spec.version       = CheckfrontAPI::VERSION
-  spec.authors       = ["Brett Goss"]
-  spec.email         = ["brettgoss@live.com"]
+  spec.authors       = [""]
+  spec.email         = [""]
 
-  spec.summary       = %q{TODO: Write a short summary, because Rubygems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.summary       = "Checkfront API SDK"
+  spec.description   = "This is an unofficial ruby wrapper for Checkfront's REST API"
+  spec.homepage      = "https://github.com/brettgoss/Ruby-SDK"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'

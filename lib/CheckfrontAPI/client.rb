@@ -1,6 +1,7 @@
 require 'dotenv'
 require 'net/http'
 require 'yaml'
+require 'json'
 Dotenv.load
 
 module CheckfrontAPI
@@ -11,7 +12,8 @@ module CheckfrontAPI
     API_SECRET = ENV["API_SECRET"]
 
     def self.test_connection
-      uri = URI(API_ENDPOINT)
+      uri = URI(API_ENDPOINT + 'ping')
+      puts uri
       res = Net::HTTP.get_response(uri)
       res.body
     end
@@ -23,5 +25,5 @@ module CheckfrontAPI
 end
 
 if __FILE__ == $PROGRAM_NAME
-  puts CheckfrontAPI::Client.test_connection
+  puts JSON.pretty_generate(JSON.parse(CheckfrontAPI::Client.test_connection))
 end

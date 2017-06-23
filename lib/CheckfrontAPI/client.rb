@@ -9,19 +9,19 @@ Dotenv.load
 module CheckfrontAPI
   class Client
 
-    API_ENDPOINT = ENV["API_ENDPOINT"]
+    API_BASE_URL = ENV["API_BASE_URL"]
     API_KEY = ENV["API_KEY"]
     API_SECRET = ENV["API_SECRET"]
 
     def self.test_connection
-      uri = URI(API_ENDPOINT + 'ping')
+      uri = URI(API_BASE_URL + 'ping')
       puts uri
       res = Net::HTTP.get_response(uri)
       res.body
     end
 
-    def self.basic_auth
-      uri = URI.parse(API_ENDPOINT + 'account')
+    def self.basic_auth()
+      uri = URI.parse(API_BASE_URL + 'account')
       puts uri
 
       Net::HTTP.start(uri.host, uri.port,
@@ -32,18 +32,16 @@ module CheckfrontAPI
         request.basic_auth API_KEY, API_SECRET
 
         response = http.request request # Net::HTTPResponse object
-        JSON.parse(response.body)['request']['status']
+        puts 'Status: ' + JSON.parse(response.body)['request']['status']
+        JSON.parse(response.body)
       end
     end
 
-    def self.oauth
-
-    end
 
   end
 end
 
 if __FILE__ == $PROGRAM_NAME
-  puts CheckfrontAPI::Client.oauth
+  puts CheckfrontAPI::Client.basic_auth
   # puts JSON.pretty_generate(JSON.parse(CheckfrontAPI::Client.oauth))
 end

@@ -20,7 +20,7 @@ module CheckfrontAPI
       res.body
     end
 
-    def self.basic_auth()
+    def self.basic_auth
       uri = URI.parse(API_BASE_URL + 'account')
       puts uri
 
@@ -37,11 +37,27 @@ module CheckfrontAPI
       end
     end
 
+    def self.get endpoint
+      uri = URI.parse(API_BASE_URL + endpoint.to_s)
+      puts uri
+
+      Net::HTTP.start(uri.host, uri.port,
+        :use_ssl => uri.scheme == 'https',
+        :verify_mode => OpenSSL::SSL::VERIFY_PEER) do |http|
+
+        request = Net::HTTP::Get.new uri.request_uri
+        request.basic_auth API_KEY, API_SECRET
+
+        response = http.request request # Net::HTTPResponse object
+        puts 'Status: ' + JSON.parse(response.body)['request']['status']
+        JSON.parse(response.body)
+        response.body
+      end
+    end
 
   end
 end
 
 if __FILE__ == $PROGRAM_NAME
-  puts CheckfrontAPI::Client.basic_auth
-  # puts JSON.pretty_generate(JSON.parse(CheckfrontAPI::Client.oauth))
+  puts JSON.pretty_generate(JSON.parse(CheckfrontAPI::Client.get('help')))
 end
